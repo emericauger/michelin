@@ -17,6 +17,7 @@ def extract_restaurants_etoiles():
     # Sale ...
     div_pagination_last = int(browser.page.find_all('div', class_ = 'js-restaurant__bottom-pagination')[0].contents[1].contents[-1].previous)
 
+    # Boucle pricipale
 
     for p in range(1, div_pagination_last + 1):
         browser.open(f"{url_racine}/{p}")
@@ -28,10 +29,25 @@ def extract_restaurants_etoiles():
             etoiles = d.find_all('div', class_= div_enfant)[0]['data-map-pin-name']
             localisation = d.find_all('div', class_='card__menu-footer--score pl-text')[0].get_text().strip()
             nom = d.find_all('h3')[0].get_text().strip()
+            
             # Extraction du lien interne FR
             lien_fr_suffix = d.find_all('a', href=True, text=True)[0]['href']
             lien_fr = f'https://guide.michelin.com' + lien_fr_suffix
-            data[cle] = (nom, localisation,lat, lng, etoiles, lien_fr)
+            
+            # Extraction des informations du restaurant par accès à la page du restaurant
+            browser.open(lien_fr)
+            try: 
+                tel = browser.page.find_all('div', class_ =  'd-flex')[2].text.strip()
+            except:
+                tel = None
+
+            try:
+                lien_ext_next_elements = browser.page.find_all('div', class_ =  'd-flex')[4].next_elements
+                lien_ext = [l for l in lien_ext_next_elements][6]['href']
+            except:
+                lien_ext = None
+
+            data[cle] = (nom, localisation,lat, lng, etoiles, lien_fr, tel, lien_ext)
         
     return data
 
