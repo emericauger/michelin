@@ -50,11 +50,19 @@
          
 }
 
+function translateEtoiles(etoiles) {
+    return etoiles == 'ONE_STAR' ? '1 étoile' :
+		   etoiles == 'TWO_STARS' ? '2 étoiles' :
+           etoiles == 'THREE_STARS' ? '3 étoiles':
+		   '000000';
+         
+}
+
 	function onEachFeature(feature, layer) {
 		if (feature.properties.url_externe) {
 		popupContent =  '<p>'  + feature.properties.nom + '</p>' +
 		'<p>'  + feature.properties.localisation + '</p>' +
-		'<p>'  + feature.properties.etoiles + '</p>' +
+		'<p>'  + translateEtoiles(feature.properties.etoiles) + '</p>' +
 		'<p><a href =' + feature.properties.url_interne + ' target="_blank">Lien Michelin</a></p>' +
 		'<p><a href =' + feature.properties.url_externe + ' target="_blank">Lien restaurant</a></p>' +
 		'<p>'  + feature.properties.tel + '</p>'
@@ -64,7 +72,7 @@
 		else {
 			popupContent =  '<p>'  + feature.properties.nom + '</p>' +
 		'<p>'  + feature.properties.localisation + '</p>' +
-		'<p>'  + feature.properties.etoiles + '</p>' +
+		'<p>'  + translateEtoiles(feature.properties.etoiles) + '</p>' +
 		'<p><a href =' + feature.properties.url_interne + ' target="_blank">Lien Michelin</a></p>' +
 		'<p>'  + feature.properties.tel + '</p>'
 		}
