@@ -96,7 +96,19 @@ function translateEtoiles(etoiles) {
 		}
 	}).addTo(map);
 
+	var legend = L.control({ position: "bottomleft" });
 
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<h4>Notation</h4>";
+  div.innerHTML += '<i class = "circle" style="background: #6a0dad"></i><span>Trois étoiles</span><br>';
+  div.innerHTML += '<i class = "circle" style="background: #50c878"></i><span>Deux étoiles</span><br>';
+  div.innerHTML += '<i class = "circle" style="background: #ffd700"></i><span>Une étoile</span><br>';
+  
+  return div;
+};
+
+legend.addTo(map);
 
 </script>
 
