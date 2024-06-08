@@ -110,6 +110,12 @@ legend.onAdd = function(map) {
 
 legend.addTo(map);
 
+// tolerance au clic dans tout le canevas de 10 (px ?)
+
+this.map = L.map('map', {
+      renderer: L.canvas({ tolerance: 10 })
+});
+
 </script>
 
 
