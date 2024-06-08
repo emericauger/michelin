@@ -75,17 +75,21 @@ function translateEtoiles(etoiles) {
 		layer.bindPopup(popupContent);
 	}
 
-	
-	const restaurant = L.geoJSON(restaurants, {
+	const canvasRenderer = L.canvas({
+    tolerance: 3
+  });
 
+
+	const restaurant = L.geoJSON(restaurants, {
 		style(feature) {
 			return feature.properties && feature.properties.style;
 		},
 
-		onEachFeature ,
+		onEachFeature,
 
 		pointToLayer(feature, latlng) {
 			return L.circleMarker(latlng, {
+				renderer: canvasRenderer,
 				radius: 4,
 				fillColor: getColor(feature.properties.etoiles),
 				color: '#000',
@@ -110,11 +114,7 @@ legend.onAdd = function(map) {
 
 legend.addTo(map);
 
-// tolerance au clic dans tout le canevas de 10 (px ?)
 
-this.map = L.map('map', {
-      renderer: L.canvas({ tolerance: 10 })
-});
 
 </script>
 
