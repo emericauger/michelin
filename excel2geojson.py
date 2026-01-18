@@ -5,9 +5,11 @@ import pandas as pd
 df = pd.read_excel("export.xlsx")
 
 # Renommage sûr des colonnes
-df = df.rename(columns={
-    "lng": "lon",       
-})
+df = df.rename(
+    columns={
+        "lng": "lon",
+    }
+)
 
 # Cast explicite
 df["lat"] = df["lat"].astype(float)
@@ -18,9 +20,7 @@ df = df.dropna(subset=["lat", "lon"])
 
 # Création du GeoDataFrame
 gdf = gpd.GeoDataFrame(
-    df,
-    geometry=gpd.points_from_xy(df["lon"], df["lat"]),
-    crs="EPSG:4326"
+    df, geometry=gpd.points_from_xy(df["lon"], df["lat"]), crs="EPSG:4326"
 )
 
 # Export GeoJSON
