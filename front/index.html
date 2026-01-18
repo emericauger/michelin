@@ -60,28 +60,26 @@
 		}
 
 		function onEachFeature(feature, layer) {
-			if (feature.properties.site_web) {
-				popupContent = '<p id="titre-resto">' + feature.properties.nom + '</p>' +
-					'<p>' + feature.properties.localisation + '</p>' +
-					'<p>' + translateEtoiles(feature.properties.etoiles) + '</p>' +
-					'<p><a href =' + feature.properties.url_interne + ' target="_blank">Lien Michelin</a></p>' +
-					'<p><a href =' + feature.properties.site_web + ' target="_blank">Lien restaurant</a></p>' +
-					'<p>' + feature.properties.telephone + '</p>'
-					;
+    		let p = feature.properties;
+    		let popupContent = '';
+
+			popupContent += '<p id="titre-resto">' + p.nom + '</p>';
+			popupContent += '<p>' + p.localisation + '</p>';
+			popupContent += '<p>' + translateEtoiles(p.etoiles) + '</p>';
+			popupContent += '<p><a href="' + p.url_interne + '" target="_blank">Lien Michelin</a></p>';
+
+			if (p.site_web) {
+				popupContent += '<p><a href="' + p.site_web + '" target="_blank">Lien restaurant</a></p>';
 			}
 
-			else {
-				popupContent = '<p id="titre-resto">' + feature.properties.nom + '</p>' +
-					'<p>' + feature.properties.localisation + '</p>' +
-					'<p>' + translateEtoiles(feature.properties.etoiles) + '</p>' +
-					'<p><a href =' + feature.properties.url_interne + ' target="_blank">Lien Michelin</a></p>' +
-					'<p>' + feature.properties.telephone + '</p>'
+			if (p.telephone) {
+				popupContent += '<p>' + p.telephone + '</p>';
 			}
 
 			layer.bindPopup(popupContent);
+}
 
-		}
-
+			
 		const canvasRenderer = L.canvas({
 			tolerance: 3
 		});
