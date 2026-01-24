@@ -1,0 +1,4 @@
+mechanicalsoup==4.12.1
+pandas==2.2.0
+geopandas==0.14.0
+openpyxl==3.11.0
