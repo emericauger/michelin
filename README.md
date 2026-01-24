@@ -2,6 +2,19 @@ Scraping des informations des restaurants étoilés Michelin. Les données sont 
 
 Déployé sur https://restos-etoiles.surge.sh
 
+## Installation
+
+1. Cloner le dépôt
+2. Créer un environnement virtuel Python :
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+3. Installer les dépendances :
+```bash
+pip install -r requirements.txt
+```
+
 ## Build
 
 Pour regénérer les données (scrape → GeoJSON → JavaScript) :
