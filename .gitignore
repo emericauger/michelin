@@ -1,6 +1,6 @@
 # Fichiers générés par le build
 export.xlsx
-export.geojson
+front/export.geojson
 front/data.js
 
 # Python
