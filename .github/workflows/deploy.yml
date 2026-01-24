@@ -1,0 +1,37 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Build data
+        run: npm run build
+      
+      - name: Deploy to Surge (Staging)
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          npx surge --project ./front --domain restos-etoiles-staging.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      
+      - name: Deploy to Surge (Production)
+        if: github.ref == 'refs/heads/master'
+        run: |
+          npx surge --project ./front --domain restos-etoiles.surge.sh --token ${{ secrets.SURGE_TOKEN }}
