@@ -1,0 +1,18 @@
+{
+  "name": "michelin-restaurants",
+  "version": "1.0.0",
+  "description": "Interactive map of Michelin starred restaurants",
+  "scripts": {
+    "build": "python3 build.py",
+    "scrape": "python3 michelin.py",
+    "geojson": "python3 excel2geojson.py"
+  },
+  "keywords": [
+    "michelin",
+    "restaurants",
+    "geojson",
+    "leaflet"
+  ],
+  "author": "Emeric Auger",
+  "license": "MIT"
+}
