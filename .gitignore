@@ -3,6 +3,9 @@ export.xlsx
 front/export.geojson
 front/data.js
 
+# Déploiement (stockage local uniquement)
+.github/workflows/
+
 # Python
 __pycache__/
 *.py[cod]
