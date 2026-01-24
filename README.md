@@ -33,6 +33,7 @@ Vous pouvez aussi exécuter les étapes individuellement :
 - `npm run scrape` – Scrape seulement
 - `npm run geojson` – Excel → GeoJSON seulement
 
+
 ## Décharge
 
 Les données récupérées sont la propriété de Michelin. Le but de ce dépôt est éducatif. 
