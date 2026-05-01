@@ -24,14 +24,14 @@ jobs:
           pip install -r requirements.txt
       
       - name: Build data
-        run: npm run build
+        run: python3 build.py
       
       - name: Deploy to Surge (Staging)
         if: github.ref == 'refs/heads/develop'
         run: |
-          npx surge --project ./front --domain ${{ secrets.SURGE_DOMAIN_STAGING }} --token ${{ secrets.SURGE_TOKEN }}
+          npx surge --project ./front --domain ${{ secrets.SURGE_DOMAIN_STAGING }} --token ${{ secrets.SURGE_TOKEN }} --verbose
       
       - name: Deploy to Surge (Production)
         if: github.ref == 'refs/heads/master'
         run: |
-          npx surge --project ./front --domain ${{ secrets.SURGE_DOMAIN_PROD }} --token ${{ secrets.SURGE_TOKEN }}
+          npx surge --project ./front --domain ${{ secrets.SURGE_DOMAIN_PROD }} --token ${{ secrets.SURGE_TOKEN }} --verbose
