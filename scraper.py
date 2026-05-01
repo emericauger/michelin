@@ -20,7 +20,7 @@ def extract_restaurants_etoiles(verbose: bool = False) -> Dict[str, Dict[str, An
     data = {}
     browser = mechanicalsoup.StatefulBrowser()
 
-    browser.open(f"{URL_ROOT}/fr/fr/restaurants/restaurants-etoiles")
+    browser.open(f"{URL_ROOT}/fr/fr/restaurants/restaurants")
 
     pagination = browser.page.select_one(".js-restaurant__bottom-pagination")
     pages = [int(a.text) for a in pagination.find_all("a") if a.text.strip().isdigit()]
